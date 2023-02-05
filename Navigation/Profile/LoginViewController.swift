@@ -290,7 +290,12 @@ class LoginViewController: UIViewController {
     private func loginButtonTapped() {
         loginButton.action = { [weak self] in
             guard let self = self else { return }
+            #if DEBUG
+            let passwordText = "!qaz2wsx"
+            let loginText = "test@test.ru"
+            #else
             guard let passwordText = self.passwordTextView.text, let loginText = self.loginTextView.text else { return }
+            #endif
             do {
                 try self.checkCredentionalsOnError(email: loginText, password: passwordText)
                 self.delegate?.checkCredentionalsInspector(email: loginText, password: passwordText, completion: { result in
