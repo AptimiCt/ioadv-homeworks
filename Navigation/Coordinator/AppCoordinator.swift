@@ -10,9 +10,6 @@ import UIKit
 import FirebaseCore
 import FirebaseAuth
 
-protocol Coordinator: AnyObject {
-    var childCoordinators: [Coordinator] { get set }
-}
 
 final class AppCoordinator: Coordinator {
     
