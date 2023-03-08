@@ -16,6 +16,7 @@ final class AppCoordinator: Coordinator {
     let window: UIWindow
     let rootViewController: UIViewController
     var childCoordinators: [Coordinator] = []
+    let localNotificationService = LocalNotificationsService()
     
     init(window: UIWindow) {
         self.window = window
@@ -25,6 +26,7 @@ final class AppCoordinator: Coordinator {
     func start() {
         FirebaseApp.configure()
         let appConfiguration = AppConfiguration.allCases.randomElement()
+        localNotificationService.registeForLatestUpdatesIfPossible()
         NetworkManager.request(for: appConfiguration)
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
